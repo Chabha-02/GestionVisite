@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+
+    <main role="main">
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">Hello, world!</h1>
+                <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+
+            </div>
+        </div>
+
+        <style type="text/css">
+            .jumbotron {
+                background-image: url("https://ibb.co/WsXZdVm");
+                background-size: cover;}
+        </style>
+
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+                {% for main in lastMedecin %}
+                <div class="col-md-4">
+                    <h2>{{ main.prenom }} {{ main.nom }}</h2>
+                    <p> {{ main.specialiteComplementaire }}</p>
+                    <p><a class="btn btn-secondary" href="#" role="button">Voir la suite &raquo;</a></p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <hr>
+
+        </div> <!-- /container -->
+
+    </main>
+
+{% endblock %}

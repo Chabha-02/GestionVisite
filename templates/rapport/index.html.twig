@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rapport index{% endblock %}
+
+{% block body %}
+    <h1>Rapport index</h1>
+
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Gestion visite</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://localhost:8000/profil" id="dropdown01" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Mon profil<span class="sr-only">(current)</span></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="http://localhost:8000/profil">Information</a>
+
+                        <a class="dropdown-item" href="http://localhost:8000/logout">Déconnexion</a>
+
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8000/profil/rapport">Mes rapports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8000/profil/medecin">Mes médecins</a>
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="get">
+                <input class="form-control mr-sm-2" type="date" placeholder="..." name="date" aria-label="Recherche">
+                <button class="btn btn-info my-2 my-sm-0" type="submit">Recherche</button>
+            </form>
+        </div>
+    </nav>
+
+</br>
+    <a href="{{ path('rapport_new') }}" <button type="button" class="btn btn-outline-info btn-lg">Crée un nouveau rapport</a>
+</br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Motif</th>
+                <th>Bilan</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rapport in rapports %}
+            <tr>
+                <td>{{ rapport.id }}</td>
+                <td>{{ rapport.date ? rapport.date|date('d-m-Y') : '' }}</td>
+                <td>{{ rapport.motif }}</td>
+                <td>{{ rapport.bilan }}</td>
+
+                <td>
+                    <a href="{{ path('rapport_show', {'id': rapport.id}) }}"<button type="button" class="btn btn-outline-info btn-sm">détail
+
+                    <a href="{{ path('rapport_edit', {'id': rapport.id}) }}"<button type="button" class="btn btn-outline-info btn-sm">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Pas de rapport pour cette date</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

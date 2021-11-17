@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medecin{% endblock %}
+
+{% block body %}
+<h1>Medecin</h1>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Gestion visite</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://localhost:8000/profil" id="dropdown01"
+                   data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Mon profil<span class="sr-only">(current)</span></a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="http://localhost:8000/profil">Information</a>
+
+                    <a class="dropdown-item" href="http://localhost:8000/logout">Déconnexion</a>
+
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8000/profil/rapport">Mes rapports</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8000/profil/medecin">Mes médecins</a>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+
+
+<table class="table table-bordered">
+    <span class="border border-5"></span>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Adresse</th>
+        <th>Tel</th>
+        <th>Specialité Complementaire</th>
+        <th>Département</th>
+        <th>Rapport</th>
+
+    </tr>
+    </thead>
+
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ medecin.id }}</td>
+        <td>{{ medecin.nom }}</td>
+        <td>{{ medecin.prenom }}</td>
+        <td>{{ medecin.adresse }}</td>
+        <td>
+            <a href="#"> {{ medecin.tel }}</a>
+        </td>
+        <td>{{ medecin.specialiteComplementaire }}</td>
+        <td>{{ medecin.departement }}</td>
+
+        {% for rapport in medecin.rapports %}
+            <td>
+                {{ (rapport.medecin) }}
+                <a class="btn btn-outline-dark" href="{{ path('rapport_show', {id: rapport.id}) }}">Voir rapport</a>
+
+            </td>
+
+        {% endfor %}
+        <td>
+
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="{{ path('medecin_index') }}"
+<button type="button" class="btn btn-outline-info btn-sm">Retour à la liste des médecins</a>
+
+
+
+    {% endblock %}

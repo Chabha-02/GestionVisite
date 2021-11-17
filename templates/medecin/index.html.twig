@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medecin index{% endblock %}
+
+{% block body %}
+    <h1>Medecin index</h1>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Gestion visite</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://localhost:8000/profil" id="dropdown01" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Mon profil<span class="sr-only">(current)</span></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="http://localhost:8000/profil">Information</a>
+
+                        <a class="dropdown-item" href="http://localhost:8000/logout">Déconnexion</a>
+
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8000/profil/rapport">Mes rapports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8000/profil/medecin">Mes médecins</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </nav>
+    <br>
+    <div class="container">
+        <div class="row height d-flex justify-content-center align-items-center">
+            <form class="form-inline my-2 my-lg-0" method="get">
+                <input class="form-control mr-sm-2" type="search" placeholder="Chercher un médecin" name="nom" aria-label="Recherche">
+                <button class="btn btn-info my-2 my-sm-0" type="submit">Recherche</button>
+            </form>
+        </div>
+    </div>
+
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Tel</th>
+                <th>SpecialiteComplementaire</th>
+                <th>Departement</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medecin in medecins %}
+            <tr>
+                <td>{{ medecin.id }}</td>
+                <td>{{ medecin.nom }}</td>
+                <td>{{ medecin.prenom }}</td>
+                <td>{{ medecin.adresse }}</td>
+                <td>
+                    <a href="callto:skype_account">{{ medecin.tel }}</a>
+                </td>
+                <td>{{ medecin.specialiteComplementaire }}</td>
+                <td>{{ medecin.departement }}</td>
+                <td>
+                    <a href="{{ path('medecin_show', {'id': medecin.id}) }}"><button type="button" class="btn btn-outline-info btn-sm">détail
+
+                    <a href="{{ path('medecin_edit', {'id': medecin.id}) }}"><button type="button" class="btn btn-outline-info btn-sm">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun médecin ne correspond à votre recherche</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
