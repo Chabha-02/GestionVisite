@@ -6,6 +6,7 @@ use App\Repository\RapportRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=RapportRepository::class)
@@ -21,6 +22,7 @@ class Rapport
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\LessThan("today", message= "La date n'est pas valide")
      */
     private $date;
 

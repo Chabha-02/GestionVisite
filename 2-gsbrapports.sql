@@ -3576,7 +3576,6 @@ INSERT INTO `offrir` (`rapport_id`, `medicament_id`, `quantite`) VALUES
  (604, 'TXISOL22', 3),
  (605, '3MYC7', 3),
  (607, '3MYC7', 4),
- (611, 'ADIMOL9', 3),
- (611, 'DIMIRTAM6', 5);
+ (611, 'ADIMOL9', 3);
 
 -- --------------------------------------------------------
