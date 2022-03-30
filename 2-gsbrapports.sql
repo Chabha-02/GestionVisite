@@ -3579,3 +3579,8 @@ INSERT INTO `offrir` (`rapport_id`, `medicament_id`, `quantite`) VALUES
  (611, 'ADIMOL9', 3);
 
 -- --------------------------------------------------------
+CREATE TRIGGER increment_visiteur
+    BEFORE INSERT ON visiteur FOR EACH ROW
+    BEGIN
+        SET NEW.nom = upper(NEW.nom);
+    END;
